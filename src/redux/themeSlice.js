@@ -5,7 +5,7 @@ const initialState = {
   secondaryColor: "#2ecc71",
   backgroundColor: "#ffffff",
   fontFamily: "Arial",
-  fontSize: "16px",
+  fontSize: 16,
 };
 
 const themeSlice = createSlice({
