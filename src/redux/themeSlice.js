@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { act } from "react";
 
 const initialState = {
   primaryColor: "#3498db",
@@ -20,7 +19,7 @@ const themeSlice = createSlice({
       state.secondaryColor = action.payload;
     },
     setBackgroundColor: (state, action) => {
-      state.secondaryColor = action.payload;
+      state.backgroundColor = action.payload;
     },
     setFontFamily: (state, action) => {
       state.fontFamily = action.payload;
