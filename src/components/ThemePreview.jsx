@@ -10,24 +10,24 @@ function ThemePreview() {
   }
 
   const getFontSizeClass = (size) => {
-    if (size <= 12) return "text-xs"; // 12px or less
-    if (size <= 14) return "text-sm"; // 14px
-    if (size <= 16) return "text-base"; // 16px
-    if (size <= 18) return "text-lg"; // 18px
-    if (size <= 20) return "text-xl"; // 20px
-    if (size <= 24) return "text-2xl"; // 24px
-    if (size <= 30) return "text-3xl"; // 30px
-    if (size <= 36) return "text-4xl"; // 36px
-    if (size <= 48) return "text-5xl"; // 48px
-    if (size <= 60) return "text-6xl"; // 60px
-    if (size <= 72) return "text-7xl"; // 72px
-    if (size <= 96) return "text-8xl"; // 96px
-    return "text-9xl"; // 128px and larger
+    if (size <= 12) return "text-xs";
+    if (size <= 14) return "text-sm";
+    if (size <= 16) return "text-base";
+    if (size <= 18) return "text-lg";
+    if (size <= 20) return "text-xl";
+    if (size <= 24) return "text-2xl";
+    if (size <= 30) return "text-3xl";
+    if (size <= 36) return "text-4xl";
+    if (size <= 48) return "text-5xl";
+    if (size <= 60) return "text-6xl";
+    if (size <= 72) return "text-7xl";
+    if (size <= 96) return "text-8xl";
+    return "text-9xl";
   };
 
   return (
     <div
-      className="max-w-4xl mx-auto my-8 p-6 rounded-lg shadow-xl transition-all duration-300"
+      className="max-w-3xl mx-auto my-8 p-8 rounded-lg border shadow-sm transition-transform duration-300"
       style={{
         backgroundColor: theme.backgroundColor,
         color: theme.primaryColor,
@@ -35,24 +35,24 @@ function ThemePreview() {
       }}
     >
       <h1
-        className={`text-center font-semibold mb-4 ${getFontSizeClass(
+        className={`text-center font-semibold mb-6 ${getFontSizeClass(
           theme.fontSize
         )}`}
       >
         Theme Preview
       </h1>
-      <p className="text-center text-lg mb-6">
+      <p className="text-center text-base text-gray-600 mb-8">
         This is a live preview of your custom theme.
       </p>
-      <div className="flex justify-around items-center space-x-4">
+      <div className="grid grid-cols-2 gap-4">
         <div
-          className="p-4 rounded-md text-white font-bold text-lg"
+          className="flex items-center justify-center p-6 rounded-md text-white font-medium text-base shadow-sm"
           style={{ backgroundColor: theme.secondaryColor }}
         >
           Secondary Color Box
         </div>
         <div
-          className="p-4 rounded-md text-white font-bold text-lg"
+          className="flex items-center justify-center p-6 rounded-md text-white font-medium text-base shadow-sm"
           style={{ backgroundColor: theme.primaryColor }}
         >
           Primary Color Box

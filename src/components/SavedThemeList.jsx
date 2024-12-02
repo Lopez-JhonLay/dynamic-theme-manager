@@ -26,32 +26,32 @@ const SavedThemeList = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto my-8 p-6 bg-gray-100 shadow-xl rounded-lg">
-      <h2 className="text-2xl font-semibold text-gray-800 mb-4">
+    <div className="max-w-4xl mx-auto my-8 p-6 rounded-lg border bg-gray-50 shadow-sm">
+      <h2 className="text-2xl font-semibold text-gray-800 mb-6">
         Saved Themes
       </h2>
       {savedThemes.length > 0 ? (
-        <ul className="space-y-4">
+        <ul className="divide-y divide-gray-200">
           {savedThemes.map((theme) => (
             <li
               key={theme.id}
-              className="flex items-center justify-between p-4 bg-white shadow rounded-lg"
+              className="flex items-center justify-between p-4 rounded-md hover:bg-gray-100 transition duration-200"
             >
               <div>
-                <p className="font-medium text-gray-700">{theme.name}</p>
-                <div className="flex items-center space-x-2 mt-2">
+                <p className="font-medium text-gray-800">{theme.name}</p>
+                <div className="flex items-center space-x-3 mt-2">
                   <span
-                    className="w-6 h-6 rounded-full"
+                    className="w-6 h-6 rounded-full border"
                     style={{ backgroundColor: theme.primaryColor }}
                     title="Primary Color"
                   ></span>
                   <span
-                    className="w-6 h-6 rounded-full"
+                    className="w-6 h-6 rounded-full border"
                     style={{ backgroundColor: theme.secondaryColor }}
                     title="Secondary Color"
                   ></span>
                   <span
-                    className="w-6 h-6 rounded-full"
+                    className="w-6 h-6 rounded-full border"
                     style={{ backgroundColor: theme.backgroundColor }}
                     title="Background Color"
                   ></span>
@@ -60,13 +60,13 @@ const SavedThemeList = () => {
               <div className="flex space-x-3">
                 <button
                   onClick={() => handleApplyTheme(theme)}
-                  className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+                  className="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-md shadow-sm hover:bg-blue-700 transition"
                 >
                   Apply
                 </button>
                 <button
                   onClick={() => handleDeleteTheme(theme.id)}
-                  className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700"
+                  className="px-4 py-2 text-sm font-medium text-white bg-red-600 rounded-md shadow-sm hover:bg-red-700 transition"
                 >
                   Delete
                 </button>
@@ -75,7 +75,7 @@ const SavedThemeList = () => {
           ))}
         </ul>
       ) : (
-        <p className="text-gray-500">No saved themes available.</p>
+        <p className="text-gray-500 text-center">No saved themes available.</p>
       )}
     </div>
   );

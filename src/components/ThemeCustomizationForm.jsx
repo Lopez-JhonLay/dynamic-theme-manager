@@ -12,11 +12,9 @@ import { addTheme } from "../redux/savedThemeSlice";
 const ThemeSettingsForm = () => {
   const dispatch = useDispatch();
 
-  // Access the current theme from Redux state
   const theme = useSelector((state) => state.theme);
   const [themeName, setThemeName] = useState("");
 
-  // Local state for the form inputs
   const [formData, setFormData] = useState({
     primaryColor: theme.primaryColor,
     secondaryColor: theme.secondaryColor,
@@ -25,7 +23,6 @@ const ThemeSettingsForm = () => {
     fontSize: theme.fontSize,
   });
 
-  // Handle form input change
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -34,7 +31,6 @@ const ThemeSettingsForm = () => {
     });
   };
 
-  // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(setPrimaryColor(formData.primaryColor));
@@ -62,15 +58,15 @@ const ThemeSettingsForm = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto my-8 p-6 bg-white shadow-xl rounded-lg">
-      <h2 className="text-3xl font-semibold text-center text-gray-800 mb-6">
+    <div className="max-w-3xl mx-auto my-8 p-8 bg-white border border-gray-200 rounded-md shadow-sm">
+      <h2 className="text-2xl font-semibold text-gray-800 text-center mb-8">
         Customize Your Theme
       </h2>
       <form onSubmit={handleSubmit} className="space-y-6">
-        <div>
+        <div className="grid gap-2">
           <label
             htmlFor="primaryColor"
-            className="block text-gray-700 font-medium mb-2"
+            className="text-sm font-medium text-gray-700"
           >
             Primary Color
           </label>
@@ -80,14 +76,13 @@ const ThemeSettingsForm = () => {
             name="primaryColor"
             value={formData.primaryColor}
             onChange={handleChange}
-            className="w-16 h-16 border-2 border-gray-300 rounded-md"
+            className="h-10 w-10 rounded border border-gray-300"
           />
         </div>
-
-        <div>
+        <div className="grid gap-2">
           <label
             htmlFor="secondaryColor"
-            className="block text-gray-700 font-medium mb-2"
+            className="text-sm font-medium text-gray-700"
           >
             Secondary Color
           </label>
@@ -97,14 +92,13 @@ const ThemeSettingsForm = () => {
             name="secondaryColor"
             value={formData.secondaryColor}
             onChange={handleChange}
-            className="w-16 h-16 border-2 border-gray-300 rounded-md"
+            className="h-10 w-10 rounded border border-gray-300"
           />
         </div>
-
-        <div>
+        <div className="grid gap-2">
           <label
             htmlFor="backgroundColor"
-            className="block text-gray-700 font-medium mb-2"
+            className="text-sm font-medium text-gray-700"
           >
             Background Color
           </label>
@@ -114,14 +108,13 @@ const ThemeSettingsForm = () => {
             name="backgroundColor"
             value={formData.backgroundColor}
             onChange={handleChange}
-            className="w-16 h-16 border-2 border-gray-300 rounded-md"
+            className="h-10 w-10 rounded border border-gray-300"
           />
         </div>
-
-        <div>
+        <div className="grid gap-2">
           <label
             htmlFor="fontFamily"
-            className="block text-gray-700 font-medium mb-2"
+            className="text-sm font-medium text-gray-700"
           >
             Font Family
           </label>
@@ -130,7 +123,7 @@ const ThemeSettingsForm = () => {
             name="fontFamily"
             value={formData.fontFamily}
             onChange={handleChange}
-            className="w-full p-2 border-2 border-gray-300 rounded-md"
+            className="w-full rounded-md border border-gray-300 px-4 py-2 focus:border-blue-500 focus:ring focus:ring-blue-100"
           >
             <option value="Arial">Arial</option>
             <option value="Courier New">Courier New</option>
@@ -139,11 +132,10 @@ const ThemeSettingsForm = () => {
             <option value="Verdana">Verdana</option>
           </select>
         </div>
-
-        <div>
+        <div className="grid gap-2">
           <label
             htmlFor="fontSize"
-            className="block text-gray-700 font-medium mb-2"
+            className="text-sm font-medium text-gray-700"
           >
             Font Size (px)
           </label>
@@ -155,15 +147,13 @@ const ThemeSettingsForm = () => {
             onChange={handleChange}
             min="10"
             max="100"
-            className="w-full p-2 border-2 border-gray-300 rounded-md"
+            className="w-full rounded-md border border-gray-300 px-4 py-2 focus:border-blue-500 focus:ring focus:ring-blue-100"
           />
         </div>
-
-        {/* Theme Name and Save Button */}
-        <div>
+        <div className="grid gap-2">
           <label
             htmlFor="themeName"
-            className="block text-gray-700 font-medium"
+            className="text-sm font-medium text-gray-700"
           >
             Theme Name
           </label>
@@ -173,26 +163,22 @@ const ThemeSettingsForm = () => {
             value={themeName}
             onChange={(e) => setThemeName(e.target.value)}
             placeholder="Enter a name for this theme"
-            className="w-full p-2 border-2 border-gray-300 rounded-md"
+            className="w-full rounded-md border border-gray-300 px-4 py-2 focus:border-blue-500 focus:ring focus:ring-blue-100"
           />
         </div>
-        <div className="text-center">
+        <div className="flex flex-wrap gap-4 justify-center mt-6">
+          <button
+            type="submit"
+            className="inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700 focus:ring focus:ring-blue-200 focus:outline-none"
+          >
+            View
+          </button>
           <button
             type="button"
             onClick={handleSaveTheme}
-            className="px-6 py-3 bg-green-600 text-white font-semibold rounded-lg shadow-md hover:bg-green-700 transition duration-200"
+            className="inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-white bg-green-600 rounded-md hover:bg-green-700 focus:ring focus:ring-green-200 focus:outline-none"
           >
             Save Theme
-          </button>
-        </div>
-
-        {/* Submit Button */}
-        <div className="text-center">
-          <button
-            type="submit"
-            className="px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 transition duration-200"
-          >
-            Save Customization
           </button>
         </div>
       </form>
