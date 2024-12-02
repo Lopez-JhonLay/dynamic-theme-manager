@@ -7,12 +7,14 @@ import {
   setFontFamily,
   setFontSize,
 } from "../redux/themeSlice";
+import { addTheme } from "../redux/savedThemeSlice";
 
 const ThemeSettingsForm = () => {
   const dispatch = useDispatch();
 
   // Access the current theme from Redux state
   const theme = useSelector((state) => state.theme);
+  const [themeName, setThemeName] = useState("");
 
   // Local state for the form inputs
   const [formData, setFormData] = useState({
@@ -40,6 +42,23 @@ const ThemeSettingsForm = () => {
     dispatch(setBackgroundColor(formData.backgroundColor));
     dispatch(setFontFamily(formData.fontFamily));
     dispatch(setFontSize(formData.fontSize));
+  };
+
+  const handleSaveTheme = () => {
+    if (!themeName.trim()) {
+      alert("Please enter a theme name.");
+      return;
+    }
+
+    const newTheme = {
+      id: Date.now(),
+      name: themeName,
+      ...theme,
+    };
+
+    dispatch(addTheme(newTheme));
+    setThemeName("");
+    alert(`Theme "${themeName}" saved successfully!`);
   };
 
   return (
@@ -140,12 +159,40 @@ const ThemeSettingsForm = () => {
           />
         </div>
 
+        {/* Theme Name and Save Button */}
+        <div>
+          <label
+            htmlFor="themeName"
+            className="block text-gray-700 font-medium"
+          >
+            Theme Name
+          </label>
+          <input
+            type="text"
+            id="themeName"
+            value={themeName}
+            onChange={(e) => setThemeName(e.target.value)}
+            placeholder="Enter a name for this theme"
+            className="w-full p-2 border-2 border-gray-300 rounded-md"
+          />
+        </div>
+        <div className="text-center">
+          <button
+            type="button"
+            onClick={handleSaveTheme}
+            className="px-6 py-3 bg-green-600 text-white font-semibold rounded-lg shadow-md hover:bg-green-700 transition duration-200"
+          >
+            Save Theme
+          </button>
+        </div>
+
+        {/* Submit Button */}
         <div className="text-center">
           <button
             type="submit"
             className="px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 transition duration-200"
           >
-            Save Theme
+            Save Customization
           </button>
         </div>
       </form>
